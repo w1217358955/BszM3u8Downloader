@@ -52,7 +52,7 @@ pod 'BszM3u8Downloader'
 pod 'BszM3u8Downloader/LocalServer'
 ```
 
-- 最低 iOS：11.0
+- 最低 iOS：12.0
 
 ### 本仓库本地集成（开发调试）
 
