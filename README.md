@@ -321,11 +321,8 @@ d.autoPauseWhenAppDidEnterBackground = YES;
 
 ---
 
-## 感谢
+## 致谢
 
-  自用库，但如果能帮到更多人就更好了。
-  参考了 https://github.com/moxcomic/AriaM3U8Downloader
-  在此感谢 @moxcomic
-
----
-
+- 自用项目, 但是如果能帮到更多人就更好了。
+- 参考了：[AriaM3U8Downloader](https://github.com/moxcomic/AriaM3U8Downloader)
+- 特别感谢 @moxcomic 的开源贡献。
