@@ -1,27 +1,20 @@
 PODS:
-  - BszM3u8Downloader/Core (0.1.0)
-  - BszM3u8Downloader/LocalServer (0.1.0):
+  - BszM3u8Downloader/Core (0.1.2)
+  - BszM3u8Downloader/LocalServer (0.1.2):
     - BszM3u8Downloader/Core
-    - GCDWebServer (~> 3.0)
-  - GCDWebServer (3.5.4):
-    - GCDWebServer/Core (= 3.5.4)
-  - GCDWebServer/Core (3.5.4)
+    - BszM3u8Downloader/VendoredGCDWebServer
+  - BszM3u8Downloader/VendoredGCDWebServer (0.1.2)
 
 DEPENDENCIES:
   - BszM3u8Downloader/LocalServer (from `../`)
-
-SPEC REPOS:
-  trunk:
-    - GCDWebServer
 
 EXTERNAL SOURCES:
   BszM3u8Downloader:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BszM3u8Downloader: be4cb97cb11a2a2eabcc447b5455b8dc35b84b79
-  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
+  BszM3u8Downloader: afc8a8be856c630b217747315aa936832f961ba8
 
-PODFILE CHECKSUM: f3ea9eef330b424d46130ea69b719a6ea1522c3b
+PODFILE CHECKSUM: b472e1be4307fba9535b44f57c07bff686b0baa3
 
 COCOAPODS: 1.16.2

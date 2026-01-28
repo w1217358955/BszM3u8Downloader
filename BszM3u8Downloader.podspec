@@ -20,18 +20,36 @@ An Objective-C library that downloads HLS (m3u8) playlists and their TS segments
               'BszM3u8Downloader/Manager/**/*.{h,m}'
   end
 
-  s.subspec 'LocalServer' do |ss|
-    ss.dependency 'BszM3u8Downloader/Core'
-    # Vendor GCDWebServer sources via git submodule to avoid lint failures on
-    # modern Xcode when the upstream podspec uses a very low deployment target.
-    ss.source_files = 'BszM3u8Downloader/LocalServer/**/*.{h,m}',
-                      'Vendor/GCDWebServer/GCDWebServer/Core/**/*.{h,m}',
-                      'Vendor/GCDWebServer/GCDWebServer/Requests/**/*.{h,m}',
-                      'Vendor/GCDWebServer/GCDWebServer/Responses/**/*.{h,m}'
+  # Vendored GCDWebServer sources (via git submodule) so users can simply:
+  #   #import <GCDWebServer/GCDWebServer.h>
+  # without depending on the upstream GCDWebServer podspec (which uses a very
+  # low deployment target and can fail lint on modern Xcode).
+  s.subspec 'VendoredGCDWebServer' do |ss|
+    # Compile upstream sources from the git submodule.
+    # NOTE: We intentionally do NOT expose these headers as public. The local
+    # server implementation will use small shim headers under External/ to keep
+    # the familiar import path (<GCDWebServer/...>) working during compilation.
+    ss.source_files = 'Vendor/GCDWebServer/GCDWebServer/**/*.{m}'
+
+    # Upstream sources use many local includes like "GCDWebServerPrivate.h"
+    # (no directory prefix), so we must add the subfolders to the header
+    # search paths for the pod target.
+    ss.xcconfig = {
+      'HEADER_SEARCH_PATHS' => '"$(inherited)" "$(PODS_TARGET_SRCROOT)/Vendor/GCDWebServer/GCDWebServer" "$(PODS_TARGET_SRCROOT)/Vendor/GCDWebServer/GCDWebServer/Core" "$(PODS_TARGET_SRCROOT)/Vendor/GCDWebServer/GCDWebServer/Requests" "$(PODS_TARGET_SRCROOT)/Vendor/GCDWebServer/GCDWebServer/Responses"'
+    }
 
     ss.libraries = 'z'
+    ss.frameworks = 'CoreServices', 'CFNetwork'
+  end
+
+  s.subspec 'LocalServer' do |ss|
+    ss.dependency 'BszM3u8Downloader/Core'
+    ss.dependency 'BszM3u8Downloader/VendoredGCDWebServer'
+    ss.source_files = 'BszM3u8Downloader/LocalServer/**/*.{h,m}'
+
+    # Make <GCDWebServer/GCDWebServer.h> resolvable via our shim headers.
     ss.xcconfig = {
-      'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/Vendor/GCDWebServer"'
+      'HEADER_SEARCH_PATHS' => '"$(inherited)" "$(PODS_TARGET_SRCROOT)/External" "$(PODS_TARGET_SRCROOT)/Vendor/GCDWebServer"'
     }
   end
 
