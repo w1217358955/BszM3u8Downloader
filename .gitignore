@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+xcuserdata/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Swift Package Manager
+.build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# Logs
+*.log
+
+# Archives
+*.xcarchive

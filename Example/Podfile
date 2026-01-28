@@ -1,0 +1,12 @@
+platform :ios, '11.0'
+
+workspace 'm3u8Example'
+project 'm3u8Example.xcodeproj'
+
+target 'm3u8Example' do
+# 不使用本地 HTTP Server 功能，会自动依赖 Core
+#  pod 'BszM3u8Downloader', :path => '../'
+
+# 使用本地 HTTP Server 功能，会自动依赖 Core 和 GCDWebServer
+  pod 'BszM3u8Downloader/LocalServer', :path => '../'
+end
