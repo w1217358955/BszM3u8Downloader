@@ -43,13 +43,13 @@ Documents/
 默认只包含下载功能（不含本地播放 server）：
 
 ```ruby
-pod 'BszM3u8Downloader'
+pod 'BszM3u8Downloader', '~> 0.1.4'
 ```
 
-需要本地 HTTP Server 播放（依赖 `GCDWebServer`）：
+需要本地 HTTP Server 播放（内部已内置 `GCDWebServer` 源码，不需要你额外声明 `pod 'GCDWebServer'`）：
 
 ```ruby
-pod 'BszM3u8Downloader/LocalServer'
+pod 'BszM3u8Downloader/LocalServer', '~> 0.1.4'
 ```
 
 - 最低 iOS：12.0
