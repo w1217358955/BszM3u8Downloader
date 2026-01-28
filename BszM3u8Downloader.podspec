@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BszM3u8Downloader'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'An Objective-C M3U8 downloader Manager'
 
   s.description      = <<-DESC
@@ -30,6 +30,14 @@ An Objective-C library that downloads HLS (m3u8) playlists and their TS segments
     # server implementation will use small shim headers under External/ to keep
     # the familiar import path (<GCDWebServer/...>) working during compilation.
     ss.source_files = 'Vendor/GCDWebServer/GCDWebServer/**/*.{m}'
+
+    # `pod spec lint` / `pod trunk push` validate in a sandbox that only keeps
+    # files declared by the spec. Preserve upstream headers (especially
+    # GCDWebServerPrivate.h) and our shim headers.
+    ss.preserve_paths = [
+      'Vendor/GCDWebServer/GCDWebServer/**/*.h',
+      'External/GCDWebServer/*.h'
+    ]
 
     # Upstream sources use many local includes like "GCDWebServerPrivate.h"
     # (no directory prefix), so we must add the subfolders to the header
