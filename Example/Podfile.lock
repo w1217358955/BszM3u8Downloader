@@ -1,9 +1,9 @@
 PODS:
-  - BszM3u8Downloader/Core (0.1.2)
-  - BszM3u8Downloader/LocalServer (0.1.2):
+  - BszM3u8Downloader/Core (0.1.4)
+  - BszM3u8Downloader/LocalServer (0.1.4):
     - BszM3u8Downloader/Core
     - BszM3u8Downloader/VendoredGCDWebServer
-  - BszM3u8Downloader/VendoredGCDWebServer (0.1.2)
+  - BszM3u8Downloader/VendoredGCDWebServer (0.1.4)
 
 DEPENDENCIES:
   - BszM3u8Downloader/LocalServer (from `../`)
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BszM3u8Downloader: afc8a8be856c630b217747315aa936832f961ba8
+  BszM3u8Downloader: b94bbc1ca2da6f1fc11b2edbf931ec64f7efb15a
 
 PODFILE CHECKSUM: b472e1be4307fba9535b44f57c07bff686b0baa3
 

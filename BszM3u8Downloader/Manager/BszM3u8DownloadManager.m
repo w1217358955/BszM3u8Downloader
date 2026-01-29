@@ -51,6 +51,7 @@ static inline BOOL BszStatusAny(BszM3u8DownloadStatus s) { return YES; }
 // 将 Ready 视为“未完成队列中的活跃项”，便于 UI 同时展示排队任务
 static inline BOOL BszStatusActive(BszM3u8DownloadStatus s) { return s == BszM3u8DownloadStatusDownloading || s == BszM3u8DownloadStatusStarting || s == BszM3u8DownloadStatusPaused || s == BszM3u8DownloadStatusReady; }
 static inline BOOL BszStatusCompleted(BszM3u8DownloadStatus s) { return s == BszM3u8DownloadStatusCompleted; }
+static inline BOOL BszStatusUnfinished(BszM3u8DownloadStatus s) { return s != BszM3u8DownloadStatusCompleted; }
 
 static inline NSNumber *BszRecordIntegerNumber(id val) {
     if ([val isKindOfClass:[NSNumber class]]) {
@@ -935,7 +936,8 @@ static const void *BszManagerCallbacksInstalledKey = &BszManagerCallbacksInstall
 }
 
 - (NSArray<NSDictionary<NSString *, NSString *> *> *)currentDownloadingTaskDicsAscending:(BOOL)ascending {
-    return [self taskDicsMatching:BszStatusActive needIndexCheck:NO ascending:ascending];
+    // 对外语义：未完成任务（包含 NotReady/Stopped/Ready/Paused/Starting/Downloading）
+    return [self taskDicsMatching:BszStatusUnfinished needIndexCheck:NO ascending:ascending];
 }
 
 - (NSArray<NSDictionary<NSString *, NSString *> *> *)completedTaskDicsAscending:(BOOL)ascending {
@@ -955,7 +957,8 @@ static const void *BszManagerCallbacksInstalledKey = &BszManagerCallbacksInstall
 }
 
 - (NSArray<BszM3u8DownloadTaskInfo *> *)currentDownloadingTasksAscending:(BOOL)ascending {
-    return [self taskInfosMatching:BszStatusActive needIndexCheck:NO ascending:ascending];
+    // 对外语义：未完成任务（包含 NotReady/Stopped/Ready/Paused/Starting/Downloading）
+    return [self taskInfosMatching:BszStatusUnfinished needIndexCheck:NO ascending:ascending];
 }
 
 - (NSArray<BszM3u8DownloadTaskInfo *> *)completedTasksAscending:(BOOL)ascending {

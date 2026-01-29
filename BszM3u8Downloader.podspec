@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BszM3u8Downloader'
-  s.version          = '0.1.4'
+  s.version          = '0.1.5'
   s.summary          = 'An Objective-C M3U8 downloader Manager'
 
   s.description      = <<-DESC
